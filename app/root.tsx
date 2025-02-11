@@ -10,6 +10,8 @@ import {
 } from "@remix-run/react";
 import theme from "./theme";
 import { Box, CssBaseline, Typography } from "@mui/material";
+import { Provider } from "react-redux";
+import { store } from "./store";
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
@@ -21,10 +23,12 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body suppressHydrationWarning>
-        <ThemeProvider theme={theme}>
-          <CssBaseline />
-          {children}
-        </ThemeProvider>
+        <Provider store={store}>
+          <ThemeProvider theme={theme}>
+            <CssBaseline />
+            {children}
+          </ThemeProvider>
+        </Provider>
         <ScrollRestoration />
         <Scripts />
       </body>
